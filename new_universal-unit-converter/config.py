@@ -18,7 +18,7 @@ UNIT_TABLE = {
 		("yard", 0.9144, ["yard", "yards", "yd"]),
 		("mile", 1609.344, ["mile", "miles", "mi"]),
 	],
-    	"area": [
+    "area": [
         ("square meter", 1.0, ["square meter", "square meters", "m²"]),
 		("square kilometer", 1e6, ["square kilometer", "square kilometers", "km²"]),
 		("square mile", 2.59e6, ["square mile", "square miles", "mi²"]),

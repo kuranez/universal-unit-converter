@@ -59,6 +59,11 @@ UNIT_TABLE = {
 		("month", 2629800.0, ["month", "months", "mo"]),  # Average month (30.44 days)
 		("year", 31557600.0, ["year", "years", "yr"]),    # Average year (365.25 days)
 	],
+    "temperature": [
+        ("celsius", 1.0, ["celsius", "degrees celsius", "°C"]),
+        ("fahrenheit", 1.0, ["fahrenheit", "degrees fahrenheit", "°F"]),
+        ("kelvin", 1.0, ["kelvin", "degrees kelvin", "K"])
+    ]
 }
 
 

@@ -17,6 +17,12 @@ UNIT_TABLE = {
 		("foot", 0.3048, ["foot", "feet", "ft"]),
 		("yard", 0.9144, ["yard", "yards", "yd"]),
 		("mile", 1609.344, ["mile", "miles", "mi"]),
+        # Astronomical units
+		("astronomical unit", 1.495978707e11, ["astronomical unit", "astronomical units", "au"]),
+		("light year", 9.4607304725808e15, ["light year", "light years", "ly"]),
+		("parsec", 3.08567758149137e16, ["parsec", "parsecs", "pc"]),
+		# Nautical units
+		("nautical mile", 1852.0, ["nautical mile", "nautical miles", "nmi"])	
 	],
     "area": [
         ("square meter", 1.0, ["square meter", "square meters", "m²"]),
@@ -78,5 +84,10 @@ UNIT_TABLE = {
 		("atmosphere", 101325.0, ["atmosphere", "atmospheres", "atm"]),
 		("torr", 133.322368, ["torr", "torrs"]),
 		("psi", 6894.75729, ["psi", "pounds per square inch"]),
+	],
+    "astronomical": [
+		("astronomical unit", 1.495978707e11, ["astronomical unit", "astronomical units", "au"]),
+		("light year", 9.4607304725808e15, ["light year", "light years", "ly"]),
+		("parsec", 3.08567758149137e16, ["parsec", "parsecs", "pc"]),
 	],
 }

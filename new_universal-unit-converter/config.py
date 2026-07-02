@@ -18,13 +18,12 @@ UNIT_TABLE = {
 		("yard", 0.9144, ["yard", "yards", "yd"]),
 		("mile", 1609.344, ["mile", "miles", "mi"]),
 	],
-	"mass": [
-		("gram", 1.0, ["gram", "grams", "g"]),
-		("kilogram", 1000.0, ["kilogram", "kilograms", "kg"]),
-		("milligram", 0.001, ["milligram", "milligrams", "mg"]),
-		("microgram", 1e-6, ["microgram", "micrograms", "ug", "μg"]),
-		("ounce", 28.349523125, ["ounce", "ounces", "oz"]),
-		("pound", 453.59237, ["pound", "pounds", "lb", "lbs"]),
+    	"area": [
+        ("square meter", 1.0, ["square meter", "square meters", "m²"]),
+		("square kilometer", 1e6, ["square kilometer", "square kilometers", "km²"]),
+		("square mile", 2.59e6, ["square mile", "square miles", "mi²"]),
+		("acre", 4046.86, ["acre", "acres"]),
+		("hectare", 10000.0, ["hectare", "hectares"]),
 	],
 	"volume": [
 		("liter", 1.0, ["liter", "liters", "litre", "litres", "l"]),
@@ -38,6 +37,14 @@ UNIT_TABLE = {
 		("tablespoon", 0.01478676478125, ["tablespoon", "tablespoons", "tbsp"]),
 		("teaspoon", 0.00492892159375, ["teaspoon", "teaspoons", "tsp"]),
 		("fluid ounce", 0.0295735295625, ["fluid ounce", "fluid ounces", "fl oz"]),
+	],
+    "mass": [
+		("gram", 1.0, ["gram", "grams", "g"]),
+		("kilogram", 1000.0, ["kilogram", "kilograms", "kg"]),
+		("milligram", 0.001, ["milligram", "milligrams", "mg"]),
+		("microgram", 1e-6, ["microgram", "micrograms", "ug", "μg"]),
+		("ounce", 28.349523125, ["ounce", "ounces", "oz"]),
+		("pound", 453.59237, ["pound", "pounds", "lb", "lbs"]),
 	],
 	"energy": [
 		("joule", 1.0, ["joule", "joules", "j"]),
@@ -64,11 +71,4 @@ UNIT_TABLE = {
         ("fahrenheit", 1.0, ["fahrenheit", "degrees fahrenheit", "°F"]),
         ("kelvin", 1.0, ["kelvin", "degrees kelvin", "K"]),
     ],
-	"area": [
-        ("square meter", 1.0, ["square meter", "square meters", "m²"]),
-		("square kilometer", 1e6, ["square kilometer", "square kilometers", "km²"]),
-		("square mile", 2.59e6, ["square mile", "square miles", "mi²"]),
-		("acre", 4046.86, ["acre", "acres"]),
-		("hectare", 10000.0, ["hectare", "hectares"]),
-	],
 }

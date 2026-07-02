@@ -62,8 +62,13 @@ UNIT_TABLE = {
     "temperature": [
         ("celsius", 1.0, ["celsius", "degrees celsius", "°C"]),
         ("fahrenheit", 1.0, ["fahrenheit", "degrees fahrenheit", "°F"]),
-        ("kelvin", 1.0, ["kelvin", "degrees kelvin", "K"])
-    ]
+        ("kelvin", 1.0, ["kelvin", "degrees kelvin", "K"]),
+    ],
+	"area": [
+        ("square meter", 1.0, ["square meter", "square meters", "m²"]),
+		("square kilometer", 1e6, ["square kilometer", "square kilometers", "km²"]),
+		("square mile", 2.59e6, ["square mile", "square miles", "mi²"]),
+		("acre", 4046.86, ["acre", "acres"]),
+		("hectare", 10000.0, ["hectare", "hectares"]),
+	],
 }
-
-

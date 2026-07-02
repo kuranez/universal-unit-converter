@@ -48,6 +48,7 @@ def submit(event: object | None = None) -> None:
     if pending_query_signature == normalized_query:
         output_area.object = format_result(parsed_query, convert(parsed_query))
         pending_query_signature = None
+        text_input.value = ""  # Clear the input field
         return
 
     pending_query_signature = normalized_query

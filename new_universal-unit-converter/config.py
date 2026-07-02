@@ -13,6 +13,8 @@ UNIT_TABLE = {
 		("millimeter", 0.001, ["millimeter", "millimeters", "millimetre", "millimetres", "mm"]),
 		("micrometer", 1e-6, ["micrometer", "micrometers", "micrometre", "micrometres", "um", "μm", "micron", "microns"]),
 		("nanometer", 1e-9, ["nanometer", "nanometers", "nanometre", "nanometres", "nm"]),
+		("picometer", 1e-12, ["picometer", "picometers", "picometre", "picometres", "pm"]),
+		("femtometer", 1e-15, ["femtometer", "femtometers", "femtometre", "femtometres", "fm"]),
 		("inch", 0.0254, ["inch", "inches"]),
 		("foot", 0.3048, ["foot", "feet", "ft"]),
 		("yard", 0.9144, ["yard", "yards", "yd"]),
@@ -22,7 +24,9 @@ UNIT_TABLE = {
 		("light year", 9.4607304725808e15, ["light year", "light years", "ly"]),
 		("parsec", 3.08567758149137e16, ["parsec", "parsecs", "pc"]),
 		# Nautical units
-		("nautical mile", 1852.0, ["nautical mile", "nautical miles", "nmi"])	
+		("nautical mile", 1852.0, ["nautical mile", "nautical miles", "nmi"]),
+		# Atomic scale
+		("angstrom", 1e-10, ["angstrom", "angstroms", "Å"]),
 	],
     "area": [
         ("square meter", 1.0, ["square meter", "square meters", "m²"]),

@@ -50,6 +50,15 @@ UNIT_TABLE = {
 		("electronvolt", 1.602176634e-19, ["electronvolt", "electronvolts", "ev"]),
 		("btu", 1055.05585262, ["btu", "british thermal unit", "british thermal units"]),
 	],
+    "time": [
+        ("second", 1.0, ["second", "seconds", "s"]),
+		("minute", 60.0, ["minute", "minutes", "min"]),
+		("hour", 3600.0, ["hour", "hours", "h"]),
+		("day", 86400.0, ["day", "days", "d"]),
+		("week", 604800.0, ["week", "weeks", "wk"]),
+		("month", 2629800.0, ["month", "months", "mo"]),  # Average month (30.44 days)
+		("year", 31557600.0, ["year", "years", "yr"]),    # Average year (365.25 days)
+	],
 }
 
 

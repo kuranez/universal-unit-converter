@@ -71,4 +71,12 @@ UNIT_TABLE = {
         ("fahrenheit", 1.0, ["fahrenheit", "degrees fahrenheit", "°F"]),
         ("kelvin", 1.0, ["kelvin", "degrees kelvin", "K"]),
     ],
+    "pressure": [
+		("pascal", 1.0, ["pascal", "pascals", "pa"]),
+		("kilopascal", 1000.0, ["kilopascal", "kilopascals", "kpa"]),
+		("bar", 100000.0, ["bar", "bars"]),
+		("atmosphere", 101325.0, ["atmosphere", "atmospheres", "atm"]),
+		("torr", 133.322368, ["torr", "torrs"]),
+		("psi", 6894.75729, ["psi", "pounds per square inch"]),
+	],
 }

@@ -76,6 +76,13 @@ UNIT_TABLE = {
 		("month", 2629800.0, ["month", "months", "mo"]),  # Average month (30.44 days)
 		("year", 31557600.0, ["year", "years", "yr"]),    # Average year (365.25 days)
 	],
+    "velocity": [
+		("meter per second", 1.0, ["meter per second", "meters per second", "m/s"]),
+		("kilometer per hour", 0.2777777778, ["kilometer per hour", "kilometers per hour", "km/h"]),
+		("mile per hour", 0.44704, ["mile per hour", "miles per hour", "mph"]),
+		("foot per second", 0.3048, ["foot per second", "feet per second", "fps"]),
+		("inch per second", 0.0254, ["inch per second", "inches per second", "ips"]),
+	],
     "temperature": [
         ("celsius", 1.0, ["celsius", "degrees celsius", "°C"]),
         ("fahrenheit", 1.0, ["fahrenheit", "degrees fahrenheit", "°F"]),

@@ -25,7 +25,7 @@ links_pane = pn.pane.Markdown(
     """
     <span style="font-size:24px; color:#C71585; font-family: monospace; font-weight:bold; padding: 0px 10px 0px 20px;">Visit Project Page on GitHub</span><br>
     <span style="font-size:18px; padding: 0px 10px 0px 20px;">
-    [🢅 https://github.com/kuranez/length-unit-converter](https://github.com/kuranez/length-unit-converter)
+    [🢅 https://github.com/kuranez/universal-unit-converter](https://github.com/kuranez/universal-unit-converter)
     </span>
     """
 )

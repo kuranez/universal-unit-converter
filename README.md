@@ -30,6 +30,12 @@ See the full list of supported canonical units and aliases in [universal-unit-co
 panel serve app.py
 ```
 
+## 🌐 Web App
+
+> [![Live Demo](https://img.shields.io/badge/🟢%20Live%20App-%20Universal--Unit--Converter-C71585?style=for-the-badge)](https://apps.kuracodez.space/universal-unit-converter/app)
+>
+> **Try the app - convert units in your browser, just type what you want to convert!.**
+
 ---
 ## Changes
 

@@ -5,29 +5,56 @@ This file holds the `UNIT_TABLE` used by the natural-language parser in
 unit names, conversion factors (to the category base unit) and aliases.
 """
 
+
+def velocity_unit(canonical_name, length_unit, time_unit, aliases):
+	return (canonical_name, LENGTH_FACTORS[length_unit] / TIME_FACTORS[time_unit], aliases)
+
+
+def knot_unit(aliases):
+	return velocity_unit("knot", "nautical mile", "hour", aliases)
+
+
+LENGTH_UNITS = [
+	("meter", 1.0, ["meter", "meters", "metre", "metres", "m"]),
+	("kilometer", 1000.0, ["kilometer", "kilometers", "kilometre", "kilometres", "km"]),
+	("centimeter", 0.01, ["centimeter", "centimeters", "centimetre", "centimetres", "cm"]),
+	("millimeter", 0.001, ["millimeter", "millimeters", "millimetre", "millimetres", "mm"]),
+	("micrometer", 1e-6, ["micrometer", "micrometers", "micrometre", "micrometres", "um", "μm", "micron", "microns"]),
+	("nanometer", 1e-9, ["nanometer", "nanometers", "nanometre", "nanometres", "nm"]),
+	("picometer", 1e-12, ["picometer", "picometers", "picometre", "picometres", "pm"]),
+	("femtometer", 1e-15, ["femtometer", "femtometers", "femtometre", "femtometres", "fm"]),
+	("inch", 0.0254, ["inch", "inches"]),
+	("foot", 0.3048, ["foot", "feet", "ft"]),
+	("yard", 0.9144, ["yard", "yards", "yd"]),
+	("mile", 1609.344, ["mile", "miles", "mi"]),
+	("astronomical unit", 1.495978707e11, ["astronomical unit", "astronomical units", "au"]),
+	("light year", 9.4607304725808e15, ["light year", "light years", "ly"]),
+	("parsec", 3.08567758149137e16, ["parsec", "parsecs", "pc"]),
+	("nautical mile", 1852.0, ["nautical mile", "nautical miles", "nmi"]),
+	("angstrom", 1e-10, ["angstrom", "angstroms", "Å"]),
+]
+
+
+TIME_UNITS = [
+	("second", 1.0, ["second", "seconds", "s"]),
+	("minute", 60.0, ["minute", "minutes", "min"]),
+	("hour", 3600.0, ["hour", "hours", "h"]),
+	("day", 86400.0, ["day", "days", "d"]),
+	("week", 604800.0, ["week", "weeks", "wk"]),
+	("month", 2629800.0, ["month", "months", "mo"]),
+	("year", 31557600.0, ["year", "years", "yr"]),
+]
+
+
+def build_factor_map(units):
+	return {canonical_name: factor for canonical_name, factor, _aliases in units}
+
+
+LENGTH_FACTORS = build_factor_map(LENGTH_UNITS)
+TIME_FACTORS = build_factor_map(TIME_UNITS)
+
 UNIT_TABLE = {
-	"length": [
-		("meter", 1.0, ["meter", "meters", "metre", "metres", "m"]),
-		("kilometer", 1000.0, ["kilometer", "kilometers", "kilometre", "kilometres", "km"]),
-		("centimeter", 0.01, ["centimeter", "centimeters", "centimetre", "centimetres", "cm"]),
-		("millimeter", 0.001, ["millimeter", "millimeters", "millimetre", "millimetres", "mm"]),
-		("micrometer", 1e-6, ["micrometer", "micrometers", "micrometre", "micrometres", "um", "μm", "micron", "microns"]),
-		("nanometer", 1e-9, ["nanometer", "nanometers", "nanometre", "nanometres", "nm"]),
-		("picometer", 1e-12, ["picometer", "picometers", "picometre", "picometres", "pm"]),
-		("femtometer", 1e-15, ["femtometer", "femtometers", "femtometre", "femtometres", "fm"]),
-		("inch", 0.0254, ["inch", "inches"]),
-		("foot", 0.3048, ["foot", "feet", "ft"]),
-		("yard", 0.9144, ["yard", "yards", "yd"]),
-		("mile", 1609.344, ["mile", "miles", "mi"]),
-        # Astronomical units
-		("astronomical unit", 1.495978707e11, ["astronomical unit", "astronomical units", "au"]),
-		("light year", 9.4607304725808e15, ["light year", "light years", "ly"]),
-		("parsec", 3.08567758149137e16, ["parsec", "parsecs", "pc"]),
-		# Nautical units
-		("nautical mile", 1852.0, ["nautical mile", "nautical miles", "nmi"]),
-		# Atomic scale
-		("angstrom", 1e-10, ["angstrom", "angstroms", "Å"]),
-	],
+	"length": LENGTH_UNITS,
     "area": [
         ("square meter", 1.0, ["square meter", "square meters", "m²"]),
 		("square kilometer", 1e6, ["square kilometer", "square kilometers", "km²"]),
@@ -67,28 +94,20 @@ UNIT_TABLE = {
 		("electronvolt", 1.602176634e-19, ["electronvolt", "electronvolts", "ev"]),
 		("btu", 1055.05585262, ["btu", "british thermal unit", "british thermal units"]),
 	],
-    "time": [
-        ("second", 1.0, ["second", "seconds", "s"]),
-		("minute", 60.0, ["minute", "minutes", "min"]),
-		("hour", 3600.0, ["hour", "hours", "h"]),
-		("day", 86400.0, ["day", "days", "d"]),
-		("week", 604800.0, ["week", "weeks", "wk"]),
-		("month", 2629800.0, ["month", "months", "mo"]),  # Average month (30.44 days)
-		("year", 31557600.0, ["year", "years", "yr"]),    # Average year (365.25 days)
+	"time": TIME_UNITS,
+	"velocity": [
+		velocity_unit("meter per second", "meter", "second", ["meter per second", "meters per second", "m/s"]),
+		velocity_unit("kilometer per hour", "kilometer", "hour", ["kilometer per hour", "kilometers per hour", "km/h"]),
+		velocity_unit("foot per second", "foot", "second", ["foot per second", "feet per second", "ft/s", "fps"]),
+		velocity_unit("mile per hour", "mile", "hour", ["mile per hour", "miles per hour", "mph"]),
+		knot_unit(["knot", "knots", "kt"]),
 	],
-    "velocity": [
-		("meter per second", 1.0, ["meter per second", "meters per second", "m/s"]),
-		("kilometer per hour", 0.2777777778, ["kilometer per hour", "kilometers per hour", "km/h"]),
-		("mile per hour", 0.44704, ["mile per hour", "miles per hour", "mph"]),
-		("foot per second", 0.3048, ["foot per second", "feet per second", "fps"]),
-		("inch per second", 0.0254, ["inch per second", "inches per second", "ips"]),
+	"temperature": [
+		("celsius", 1.0, ["celsius", "degrees celsius", "°C"]),
+		("fahrenheit", 1.0, ["fahrenheit", "degrees fahrenheit", "°F"]),
+		("kelvin", 1.0, ["kelvin", "degrees kelvin", "K"]),
 	],
-    "temperature": [
-        ("celsius", 1.0, ["celsius", "degrees celsius", "°C"]),
-        ("fahrenheit", 1.0, ["fahrenheit", "degrees fahrenheit", "°F"]),
-        ("kelvin", 1.0, ["kelvin", "degrees kelvin", "K"]),
-    ],
-    "pressure": [
+	"pressure": [
 		("pascal", 1.0, ["pascal", "pascals", "pa"]),
 		("kilopascal", 1000.0, ["kilopascal", "kilopascals", "kpa"]),
 		("bar", 100000.0, ["bar", "bars"]),
@@ -96,7 +115,7 @@ UNIT_TABLE = {
 		("torr", 133.322368, ["torr", "torrs"]),
 		("psi", 6894.75729, ["psi", "pounds per square inch"]),
 	],
-    "astronomical": [
+	"astronomical": [
 		("astronomical unit", 1.495978707e11, ["astronomical unit", "astronomical units", "au"]),
 		("light year", 9.4607304725808e15, ["light year", "light years", "ly"]),
 		("parsec", 3.08567758149137e16, ["parsec", "parsecs", "pc"]),

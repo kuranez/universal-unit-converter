@@ -16,6 +16,8 @@ from config import UNIT_TABLE as CONFIG_UNIT_TABLE
 def normalize_text(text: str) -> str:
     cleaned = text.lower().replace("μ", "u").replace("µ", "u")
     cleaned = cleaned.replace("→", " to ").replace("=", " to ")
+    cleaned = re.sub(r"(?<=\d)(?=[a-z])", " ", cleaned)
+    cleaned = re.sub(r"(?<=[a-z])(?=\d)", " ", cleaned)
     cleaned = re.sub(r"[^a-z0-9\s\.,\-\+]", " ", cleaned)
     cleaned = re.sub(r"\s+", " ", cleaned).strip()
     return cleaned

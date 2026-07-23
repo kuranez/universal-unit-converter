@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from typing import Any, Dict
 
-from .parser_helpers import normalize_text, find_number, find_units, CONNECTOR_PATTERN
+from .parser_helpers import normalize_text, tokenize
 
 
 def format_number(value: float) -> str:
@@ -16,47 +16,55 @@ def format_number(value: float) -> str:
     return formatted or "0"
 
 
+def _select_units(tokens: list[Dict[str, Any]]) -> tuple[Dict[str, Any], Dict[str, Any]] | None:
+    unit_tokens = [token for token in tokens if token.get("kind") == "UNIT"]
+    if len(unit_tokens) < 2:
+        return None
+
+    keyword_token = next((token for token in tokens if token.get("kind") == "KEYWORD"), None)
+    if keyword_token is not None:
+        source_candidates = [token for token in unit_tokens if int(token["end"]) <= int(keyword_token["start"])]
+        target_candidates = [token for token in unit_tokens if int(token["start"]) >= int(keyword_token["end"])]
+        if source_candidates and target_candidates:
+            return source_candidates[-1], target_candidates[0]
+
+    return unit_tokens[0], unit_tokens[1]
+
+
 def parse_query(query: str) -> Dict[str, Any] | None:
     normalized_query = normalize_text(query)
     if not normalized_query:
         return None
 
-    amount_info = find_number(normalized_query)
-    if amount_info is None:
+    tokens = tokenize(normalized_query)
+    if not tokens:
         return None
 
-    amount_value, amount_text = amount_info
-    unit_matches = find_units(normalized_query)
-    if len(unit_matches) < 2:
+    amount_token = next((token for token in tokens if token.get("kind") == "NUMBER"), None)
+    if amount_token is None:
         return None
 
-    connector_match = CONNECTOR_PATTERN.search(normalized_query)
-    if connector_match:
-        source_candidates = [match for match in unit_matches if match["end"] <= connector_match.start()]
-        target_candidates = [match for match in unit_matches if match["start"] >= connector_match.end()]
-        if source_candidates and target_candidates:
-            source_unit = source_candidates[-1]
-            target_unit = target_candidates[0]
-        else:
-            source_unit, target_unit = unit_matches[0], unit_matches[1]
-    else:
-        source_unit, target_unit = unit_matches[0], unit_matches[1]
-
-    if source_unit["category"] != target_unit["category"]:
+    selected_units = _select_units(tokens)
+    if selected_units is None:
         return None
 
-    if amount_text not in normalized_query:
+    source_unit, target_unit = selected_units
+    if source_unit.get("category") != target_unit.get("category"):
+        return None
+
+    amount_text = str(amount_token.get("text", ""))
+    if not amount_text:
         return None
 
     amount_position = normalized_query.find(amount_text)
-    if amount_position == -1 or amount_position > source_unit["start"]:
+    if amount_position == -1 or amount_position > int(source_unit["start"]):
         return None
 
-    if source_unit["start"] > target_unit["start"]:
+    if int(source_unit["start"]) > int(target_unit["start"]):
         return None
 
     return {
-        "amount": amount_value,
+        "amount": float(amount_token["value"]),
         "source": source_unit,
         "target": target_unit,
     }
